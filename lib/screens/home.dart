@@ -49,45 +49,9 @@ class _HomeAppState extends State<HomeApp> with SingleTickerProviderStateMixin {
     );
   }
 
-  // void _handleTabChange() {
-  //   if (_tabController.indexIsChanging) {
-  //     switch (_tabController.index) {
-  //       case 0:
-  //         setState(() {
-  //           getNewsList(
-  //               'http://newsapi.org/v2/everything?q=bitcoin&from=$todayString&sortBy=publishedAt&apiKey=$api_key');
-  //         });
-  //         break;
-  //       case 1:
-  //         setState(() {
-  //           getNewsList(
-  //               'http://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=$api_key');
-  //         });
-  //         break;
-  //       case 2:
-  //         setState(() {
-  //           getNewsList(
-  //               'http://newsapi.org/v2/everything?q=apple&from=$tomString&to=$tomString&sortBy=popularity&apiKey=$api_key');
-  //         });
-  //         break;
-  //       case 3:
-  //         setState(() {
-  //           getNewsList(Apis.techCrunch);
-  //         });
-  //         break;
-  //       case 4:
-  //         setState(() {
-  //           getNewsList(Apis.wallstreet);
-  //         });
-  //         break;
-  //     }
-  //   }
-  // }
-
   @override
   void initState() {
     _tabController = TabController(vsync: this, initialIndex: 0, length: 5);
-    // _tabController.addListener(_handleTabChange);
     Timer(Duration(seconds: 3), () {
       setState(() {
         afterTimer = true;
@@ -179,7 +143,6 @@ class _HomeAppState extends State<HomeApp> with SingleTickerProviderStateMixin {
             ),
             bottom: new TabBar(
               onTap: (_tabController) {
-                // _handleTabChange();
               },
               controller: _tabController,
               isScrollable: true,
@@ -194,7 +157,6 @@ class _HomeAppState extends State<HomeApp> with SingleTickerProviderStateMixin {
                   onTap: () {
                     setState(() {
                       _tabController.index = 0;
-                      // _handleTabChange();
                     });
                   },
                 ),
@@ -202,7 +164,6 @@ class _HomeAppState extends State<HomeApp> with SingleTickerProviderStateMixin {
                   onTap: () {
                     setState(() {
                       _tabController.index = 1;
-                      // _handleTabChange();
                     });
                   },
                   child: Tab(
@@ -213,7 +174,6 @@ class _HomeAppState extends State<HomeApp> with SingleTickerProviderStateMixin {
                   onTap: () {
                     setState(() {
                       _tabController.index = 2;
-                      // _handleTabChange();
                     });
                   },
                   child: Tab(
@@ -234,7 +194,6 @@ class _HomeAppState extends State<HomeApp> with SingleTickerProviderStateMixin {
                   onTap: () {
                     setState(() {
                       _tabController.index = 4;
-                      // _handleTabChange();
                     });
                   },
                   child: Tab(
