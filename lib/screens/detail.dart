@@ -69,12 +69,6 @@ class _DetailScreenState extends State<DetailScreen> {
                             fit: BoxFit.cover,
                             width: MediaQuery.of(context).size.width,
                           ),
-                    // : SizedBox(),
-                    // child: FadeInImage(
-                    //   fit: BoxFit.fill,
-                    //   image: NetworkImage(this.widget.image),
-                    //   placeholder: AssetImage('lib/images/images.png'),
-                    // ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
@@ -105,16 +99,6 @@ class _DetailScreenState extends State<DetailScreen> {
                 ],
               ),
             ),
-            // Positioned(
-            //   left: 5,
-            //   top: 5,
-            //   child: IconButton(
-            //     icon: Icon(Icons.arrow_back),
-            //     onPressed: () {
-            //       Navigator.pop(context);
-            //     },
-            //   ),
-            // ),
             Positioned(
               bottom: 0,
               child: GestureDetector(
@@ -167,19 +151,11 @@ class _DetailScreenState extends State<DetailScreen> {
                             )
                           ],
                         ),
-                        // decoration:
-                        //     BoxDecoration(color: Colors.black.withOpacity(1,),),
                       ),
                     ),
                   ),
                 ),
               ),
-              // child: Container(
-              //   height: 50,
-              //   width: MediaQuery.of(context).size.width,
-              //   // color: Colors.black,
-              //   child: Image.network(this.widget.image,fit: BoxFit.fill),
-              // ),
             ),
           ],
         ),

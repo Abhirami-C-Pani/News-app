@@ -37,6 +37,7 @@ class _HomeAppState extends State<HomeApp> with SingleTickerProviderStateMixin {
               final jsonResponse = json.decode(response.body);
               print(jsonResponse);
               articles = jsonResponse['articles'];
+              setState(() {});
             },
           );
           print("News Card api Successful");
@@ -50,7 +51,7 @@ class _HomeAppState extends State<HomeApp> with SingleTickerProviderStateMixin {
 
   void _handleTabChange() {
     if (_tabController.indexIsChanging) {
-      switch (_tabIndex) {
+      switch (_tabController.index) {
         case 0:
           setState(() {
             getNewsList(
@@ -90,7 +91,6 @@ class _HomeAppState extends State<HomeApp> with SingleTickerProviderStateMixin {
     Timer(Duration(seconds: 3), () {
       setState(() {
         afterTimer = true;
-        // print('After Timer -5');
       });
       setState(() {});
     });
@@ -102,26 +102,54 @@ class _HomeAppState extends State<HomeApp> with SingleTickerProviderStateMixin {
     final String tomFormatted = formatter.format(yesterday);
     todayString = todayFormatted.toString();
     tomString = tomFormatted.toString();
-    print('Today String');
-    print(todayString);
-    print('Yesterday String');
-    print(tomString);
-    print('Url');
-    print(
-        'http://newsapi.org/v2/everything?q=bitcoin&from=$todayString&sortBy=publishedAt&apiKey=$api_key');
-    // print(Apis.base_url/)
+
     onChanged = () {
       setState(() {
         _tabIndex = this._tabController.index;
         print('Index');
         print(_tabController.index);
+        if (_tabController.index == 0) {
+      
+          setState(() {
+            getNewsList(
+                'http://newsapi.org/v2/everything?q=bitcoin&from=$todayString&sortBy=publishedAt&apiKey=$api_key');
+          });
+        } else if (_tabController.index == 1) {
+          setState(() {
+            getNewsList(
+                'http://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=$api_key');
+          });
+        } else if (_tabController.index == 2) {
+          setState(() {
+            getNewsList(
+                'http://newsapi.org/v2/everything?q=apple&from=$tomString&to=$tomString&sortBy=popularity&apiKey=$api_key');
+          });
+        } else if (_tabController.index == 3) {
+          setState(() {
+            getNewsList(Apis.techCrunch);
+          });
+        } else if (_tabController.index == 4) {
+          setState(() {
+            getNewsList(Apis.wallstreet);
+          });
+        } else {
+          setState(() {
+            getNewsList(
+                'http://newsapi.org/v2/everything?q=bitcoin&from=$todayString&sortBy=publishedAt&apiKey=$api_key');
+          });
+        }
+
       });
     };
     _tabController.addListener(onChanged);
     if (_tabIndex == 0) {
       getNewsList(
           'http://newsapi.org/v2/everything?q=bitcoin&from=$todayString&sortBy=publishedAt&apiKey=$api_key');
+    } else if (_tabController.index == 2) {
+      getNewsList(
+          'http://newsapi.org/v2/everything?q=apple&from=$tomString&to=$tomString&sortBy=popularity&apiKey=$api_key');
     }
+
     super.initState();
   }
 
@@ -166,6 +194,7 @@ class _HomeAppState extends State<HomeApp> with SingleTickerProviderStateMixin {
                   onTap: () {
                     setState(() {
                       _tabController.index = 0;
+                      // _handleTabChange();
                     });
                   },
                 ),
@@ -173,6 +202,7 @@ class _HomeAppState extends State<HomeApp> with SingleTickerProviderStateMixin {
                   onTap: () {
                     setState(() {
                       _tabController.index = 1;
+                      // _handleTabChange();
                     });
                   },
                   child: Tab(
@@ -180,16 +210,33 @@ class _HomeAppState extends State<HomeApp> with SingleTickerProviderStateMixin {
                   ),
                 ),
                 GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _tabController.index = 2;
+                      // _handleTabChange();
+                    });
+                  },
                   child: Tab(
                     text: "Apple",
                   ),
                 ),
                 GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _tabController.index = 3;
+                    });
+                  },
                   child: Tab(
                     text: "TechCrunch",
                   ),
                 ),
                 GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _tabController.index = 4;
+                      // _handleTabChange();
+                    });
+                  },
                   child: Tab(
                     text: "Wall Street Journal",
                   ),
@@ -270,6 +317,10 @@ class _HomeAppState extends State<HomeApp> with SingleTickerProviderStateMixin {
                                       : Image.asset(
                                           'lib/images/images.png',
                                           fit: BoxFit.cover,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              10,
                                         ),
                                 ),
                               ),
