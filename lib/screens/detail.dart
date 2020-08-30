@@ -120,7 +120,6 @@ class _DetailScreenState extends State<DetailScreen> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(this.widget.image),
-                        // onError: AssetImage(assetName),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -138,7 +137,6 @@ class _DetailScreenState extends State<DetailScreen> {
                               'VIEW ON SITE',
                               style: TextStyle(
                                 color: Colors.white,
-                                // fontWeight: FontWeight.w500,
                                 fontSize: 14,
                                 letterSpacing: 1,
                               ),
